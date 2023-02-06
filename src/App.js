@@ -1,23 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import { useContext } from "react";
+import "./App.css";
+import DetailSong from "./components/DetailSong/DetailSong";
+import ListSongs from "./components/ListSongs/ListSongs";
+import Navbar from "./components/Navbar/Navbar";
+import Playing from "./components/Playing/Playing";
+import { Context } from "./utils/ContextApi";
 
 function App() {
+  const ContextSongs=useContext(Context)
+  const {dataSongs}=ContextSongs
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="">
+      <Navbar />
+      <div className="grid grid-cols-3 bg-slate-700 h-screen-navbar-player "> 
+        <DetailSong />
+        <ListSongs dataSongs={dataSongs}/>
+      </div>
+      <Playing />
     </div>
   );
 }
